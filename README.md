@@ -1,2 +1,2 @@
-# SIBIEN
+# NEIBIS
 Sistema de Inventarios
