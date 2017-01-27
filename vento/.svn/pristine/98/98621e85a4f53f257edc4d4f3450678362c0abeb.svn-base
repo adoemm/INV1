@@ -1,0 +1,20 @@
+<%-- 
+    Document   : editable_ajax
+    Created on : Oct 2, 2012, 10:55:40 AM
+    Author     : JeanPaul
+--%>
+
+<%@page import="java.util.Enumeration"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    //response.sendRedirect("http://www.errorpage.com");
+    Enumeration enu = request.getParameterNames();
+    String param = "";
+    while (enu.hasMoreElements()) {
+        param = enu.nextElement().toString();
+        System.out.println("" + param + " = " + request.getParameter(param));
+    }
+    System.out.println("");
+    Thread.sleep(4000);
+    out.print("Chukie " + request.getParameter("value"));
+%>

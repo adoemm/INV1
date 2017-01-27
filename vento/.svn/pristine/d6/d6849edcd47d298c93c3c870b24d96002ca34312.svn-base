@@ -1,0 +1,21 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript">
+            function example1() {
+                $("#loading").html("<p>Holamundo</p>");
+            }
+        </script>
+    </head>
+    <body>
+        <div id="loading">TODO write content</div>
+        <input type="button" value="Example 1" onclick="example1();">
+    </body>
+</html>
