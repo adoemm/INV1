@@ -12475,10 +12475,28 @@ public final class QUID {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         try {
-            SQLSentence = ""
+         SQLSentence = ""
                     + " SELECT "
-                    + " SUM(MC.cantidad*MC.precioUnitario)"
-                    + " , SUM(MC.cantidad)"
+                    + " SUM(MC.cantidad*MC.precioUnitario)-("
+                    + " SELECT ISNULL(SUM(MC.cantidad*MC.precioUnitario),0)"
+                    + " FROM "
+                    + " MOVIMIENTO_CONSUMIBLE MC"
+                    + " , MOVIMIENTO M"
+                    + " , TIPO_MOVIMIENTO TM"
+                    + " WHERE MC.FK_ID_Movimiento= M.ID_Movimiento"
+                    + " AND M.FK_ID_Tipo_Movimiento = TM.ID_Tipo_Movimiento"
+                    + " AND TM.ID_Tipo_Movimiento=2"
+                    + " AND FK_ID_Consumible=?)"
+                    + " , SUM(MC.cantidad)-("
+                    + " SELECT ISNULL(SUM(MC.cantidad),0)"
+                    + " FROM "
+                    + " MOVIMIENTO_CONSUMIBLE MC"
+                    + " , MOVIMIENTO M"
+                    + " , TIPO_MOVIMIENTO TM"
+                    + " WHERE MC.FK_ID_Movimiento= M.ID_Movimiento"
+                    + " AND M.FK_ID_Tipo_Movimiento = TM.ID_Tipo_Movimiento"
+                    + " AND TM.ID_Tipo_Movimiento=2"
+                    + " AND FK_ID_Consumible=?)"
                     + " FROM"
                     + " MOVIMIENTO M"
                     + " , CONSUMIBLE C"
@@ -12498,10 +12516,12 @@ public final class QUID {
             conn = jscp.getConnectionFromPool();
             pstmt = conn.prepareStatement(SQLSentence);
             pstmt.setQueryTimeout(statementTimeOut);
-            pstmt.setString(1, ID_Plantel);
+            pstmt.setString(1, ID_Consumible);
             pstmt.setString(2, ID_Consumible);
-            pstmt.setString(3, fechaInicioAnioFiscal);
-            pstmt.setString(4, fechaFinAnioFiscal);
+            pstmt.setString(3, ID_Plantel);
+            pstmt.setString(4, ID_Consumible);
+            pstmt.setString(5, fechaInicioAnioFiscal);
+            pstmt.setString(6, fechaFinAnioFiscal);
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 listToSend.add(rs.getDouble(1));
@@ -23375,7 +23395,7 @@ public final class QUID {
             rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
                 id_inserted = rs.getString(1);
-                this.trans_update_CantidadPrecio4Consumible(ID_Consumible, nuevoPrecio, nuevaCantidad, fechaActual, conn);
+                this.trans_update_CantidadPrecio4Consumible(ID_Consumible, nuevaCantidad, nuevoPrecio, fechaActual, conn);
             }
             conn.commit();
             conn.setAutoCommit(true);

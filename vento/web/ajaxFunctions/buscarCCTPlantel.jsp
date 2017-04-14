@@ -8,7 +8,9 @@
 <%@page contentType="text/html;charset=utf-8" pageEncoding="utf-8" language="java"%>
 <%@ include file="/gui/pageComponents/globalSettings.jsp"%>
 
+
 <%    try {
+    
         if (request.getParameter(WebUtil.encode(session, "imix")) != null) {
             LinkedList<String> access4ThisPage = new LinkedList();
             access4ThisPage.add("LoggedUser");

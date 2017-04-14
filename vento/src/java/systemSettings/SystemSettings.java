@@ -194,7 +194,7 @@ public final class SystemSettings {
                 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 //Parametros del sistema
                 PageParameters.addParameter("leyendaoficio", "2015. Año del Bicentenario Luctuoso de José María Morelos y Pavón.");
-                PageParameters.addParameter("revision", "75");
+                PageParameters.addParameter("revision", "76");
 
                 PageParameters.addParameter("folderDocs", "c:\\sibien_Files\\files\\");//carpeta donde el sistema guarda archivos, sino existe se crea automaticamente 
                 PageParameters.addParameter("folderMovs", "c:\\sibien_Files\\movimientos\\");//carpeta donde el sistema guarda archivos, sino existe se crea automaticamente
@@ -210,8 +210,8 @@ public final class SystemSettings {
                 PageParameters.addParameter("workExtensions", "permited");
                 PageParameters.addParameter("timeOutToUploadFile", "0");// tiempo de espera para poder subir un archivo en milis (11min)
                 PageParameters.addParameter("fileSizeLimited", "1");//Indica si se limita el tamaño de los archivos que son subidos al servidor 1=si 0=no
-                PageParameters.addParameter("inicioAnioContable", "2016-01-01");
-                PageParameters.addParameter("finAnioContable", "2016-12-31");
+                PageParameters.addParameter("inicioAnioContable", "2017-01-01");
+                PageParameters.addParameter("finAnioContable", "2017-12-31");
                 PageParameters.addParameter("testDBLabel", "");
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 //Database parameters
@@ -227,14 +227,14 @@ public final class SystemSettings {
                     /**
                      * PRUEBAS
                      */
-                 
+//                 
                     PageParameters.addParameter("DBDir", "172.16.1.13");
                     jscp.setHost("172.16.1.13");
                     jscp.setPort(1433);
                     jscp.setSchema("SIBIEN");
                     jscp.setUser("loginSBN");
                     jscp.setPassword("Matrix_Reload2016");
-                    
+//                    
                     /**
                      * *******PRODUCCION*********
                      */

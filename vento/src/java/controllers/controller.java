@@ -5536,7 +5536,7 @@ public final class controller extends HttpServlet {
                 if (tport.getCode() == 0) {
                     this.getServletConfig().getServletContext().getRequestDispatcher(
                             "" + PageParameters.getParameter("msgUtil")
-                            + "/msgNRedirect.jsp?title=Operación Exitosa&type=info&msg=Los datos se actualizaron corretcamente.&url=" + PageParameters.getParameter("mainContext") + PageParameters.getParameter("gui") + "/ConsultaConsumible.jsp?" + WebUtil.encode(session, "imix") + "=" + WebUtil.encode(session, UTime.getTimeMilis()) + "_param_idPlantel=" + request.getParameter("idPlantel")).forward(request, response);
+                            + "/msgNRedirect.jsp?title=Operación Exitosa&type=info&msg=Los datos se actualizaron correctamente.&url=" + PageParameters.getParameter("mainContext") + PageParameters.getParameter("gui") + "/ConsultaConsumible.jsp?" + WebUtil.encode(session, "imix") + "=" + WebUtil.encode(session, UTime.getTimeMilis()) + "_param_idPlantel=" + request.getParameter("idPlantel")).forward(request, response);
                 } else {
                     this.getServletConfig().getServletContext().getRequestDispatcher(
                             "" + PageParameters.getParameter("msgUtil")
@@ -5585,7 +5585,7 @@ public final class controller extends HttpServlet {
                     && StringUtil.isValidDouble(strPrecioActual)) {
 //                Double nuevoPrecio = Double.parseDouble(request.getParameter("precioUnitario")) != Double.parseDouble(strPrecioActual) ? Double.parseDouble(request.getParameter("precioUnitario")) : Double.parseDouble(strPrecioActual);
                 Double nuevaCantidad = Double.parseDouble(strCantidadAcual) + Double.parseDouble(request.getParameter("cantidad"));
-                Double nuevoPrecio = this.calculaCostoPromedio(session, request, response, quid, out);
+                Double nuevoPrecio = this.calculaCostoPromedio(session, request, response, quid, out, strPrecioActual);
                 Transporter tport = quid.trans_insert_ConsumibleMovimiento(
                         idConsumible,
                         WebUtil.decode(session, request.getParameter("idMovimiento")),
@@ -5612,9 +5612,8 @@ public final class controller extends HttpServlet {
         }
     }
 
-    private Double calculaCostoPromedio(HttpSession session, HttpServletRequest request, HttpServletResponse response, QUID quid, PrintWriter out) throws Exception {
-        String strPrecioActual = quid.select_Consumible4Campo("precioActual",
-                WebUtil.decode(session, request.getParameter("idConsumible")));
+    private Double calculaCostoPromedio(HttpSession session, HttpServletRequest request, HttpServletResponse response, QUID quid, PrintWriter out, String strPrecioActual) throws Exception {
+       
         Double costoPromedio = Double.parseDouble(strPrecioActual);//0.0;
         LinkedList sumas = quid.select_SumaActualCostos4Consumible(
                 WebUtil.decode(session, request.getParameter("idPlantel")),
@@ -5785,8 +5784,8 @@ public final class controller extends HttpServlet {
                             WebUtil.decode(session, request.getParameter("idMovimiento")),
                             request.getParameter("cantidad"),
                             strPrecioActual,
-                            nuevaCantidad,
                             nuevoPrecio,
+                            nuevaCantidad,
                             UTime.calendar2SQLDateFormat(Calendar.getInstance()));
                     if (tport.getCode() == 0) {
                         if (nuevaCantidad == 0) {
@@ -5878,7 +5877,7 @@ public final class controller extends HttpServlet {
                 if (tport.getCode() == 0) {
                     this.getServletConfig().getServletContext().getRequestDispatcher(
                             "" + PageParameters.getParameter("msgUtil")
-                            + "/msgNRedirect.jsp?title=Operación Exitosa&type=info&msg=Los datos se actualizaron corretcamente.&url=" + PageParameters.getParameter("mainContext") + PageParameters.getParameter("gui") + "/ConsultaMovimientoSalida.jsp?" + WebUtil.encode(session, "imix") + "=" + WebUtil.encode(session, UTime.getTimeMilis()) + "_param_idPlantel=" + request.getParameter("idPlantel")).forward(request, response);
+                            + "/msgNRedirect.jsp?title=Operación Exitosa&type=info&msg=Los datos se actualizaron correctamente.&url=" + PageParameters.getParameter("mainContext") + PageParameters.getParameter("gui") + "/ConsultaMovimientoSalida.jsp?" + WebUtil.encode(session, "imix") + "=" + WebUtil.encode(session, UTime.getTimeMilis()) + "_param_idPlantel=" + request.getParameter("idPlantel")).forward(request, response);
                 } else {
                     this.getServletConfig().getServletContext().getRequestDispatcher(
                             "" + PageParameters.getParameter("msgUtil")

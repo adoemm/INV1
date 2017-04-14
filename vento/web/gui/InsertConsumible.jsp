@@ -31,7 +31,7 @@
                 document.getElementById("observaciones").value = '';
             }
             function enviarInfo(form) {
-                alert('<%=PageParameters.getParameter("mainController")%>');
+               
                 $.ajax({type: 'POST'
                     , contentType: 'application/x-www-form-urlencoded;charset=utf-8'
                     , cache: false

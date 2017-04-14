@@ -1952,7 +1952,7 @@ public final class StringUtil {
         DecimalFormat df = new DecimalFormat("#.##");
         return Double.parseDouble(df.format(number));
     }
-
+    
     public static String sformatDoubleTwoDecimals(Double number) {
         DecimalFormat df = new DecimalFormat("#.##");
         return df.format(number);
